@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     *APPS,
     *MODULE,
 
@@ -65,15 +66,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'shopweb.wsgi.application'
 
 # settings.py
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shopdata',  
-        'USER': 'moradi',      
-        'PASSWORD': 'moradi1382',  
-        'HOST': 'localhost',  
-        'PORT': '5432',  
+        'NAME': 'shopweb',
+        'USER': 'moradi',
+        'PASSWORD': 'moradi1382',
+        'HOST': 'db',  
+        'PORT': '5432',
     }
 }
 
@@ -103,3 +103,8 @@ USE_I18N = True
 USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'account.User'
+
