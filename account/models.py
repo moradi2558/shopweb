@@ -27,3 +27,9 @@ class User(AbstractBaseUser,PermissionsMixin):
     def is_staff(self):
         return self.is_admin
     
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    borrow_limit = models.PositiveIntegerField(default = 2)
+    warning = models.PositiveIntegerField(default=0)
+    address = models.TextField()
+    phone = models.PositiveIntegerField()

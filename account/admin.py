@@ -37,8 +37,15 @@ class UserAdmin(BaseUserAdmin):
     ordering = ['username']
     filter_horizontal = ()
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'borrow_limit', 'warning', 'address', 'phone')
+    search_fields = ('user__username', 'address')
+    list_filter = ('borrow_limit', 'warning')
+
+
 
 
 
 admin.site.register(User,UserAdmin)
 admin.site.unregister(Group)
+admin.site.register(Profile, ProfileAdmin)
