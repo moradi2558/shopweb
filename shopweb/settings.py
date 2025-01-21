@@ -15,7 +15,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 APPS = [
-    'home.apps.HomeConfig',
+    'book.apps.BookConfig',
     'account.apps.AccountConfig',
 ]
 
