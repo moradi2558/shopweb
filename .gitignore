@@ -1,8 +1,8 @@
 venv/
 env/
-*.env
+*.venv
 */migrations/*
-__pycache__/
+__pycache__/*
 *.pyc
 *.pyo
 *.pyd
