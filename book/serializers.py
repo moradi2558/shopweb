@@ -18,20 +18,38 @@ class BookSerializer(serializers.ModelSerializer):
         write_only=True,
         required=False
     )
+    cover_image_url = serializers.SerializerMethodField()
     
     class Meta:
         model = Book
         fields = '__all__'
         read_only_fields = ['id']
+    
+    def get_cover_image_url(self, obj):
+        if obj.cover_image:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.cover_image.url)
+            return obj.cover_image.url
+        return None
 
 
 class BookListSerializer(serializers.ModelSerializer):
     """Serializer برای لیست کتاب‌ها (بدون جزئیات کامل)"""
     category = CategorySerializer(many=True, read_only=True)
+    cover_image_url = serializers.SerializerMethodField()
     
     class Meta:
         model = Book
-        fields = ['id', 'name', 'price', 'sell', 'available_copy', 'category', 'date']
+        fields = ['id', 'name', 'price', 'sell', 'available_copy', 'category', 'date', 'cover_image', 'cover_image_url', 'description']
+    
+    def get_cover_image_url(self, obj):
+        if obj.cover_image:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.cover_image.url)
+            return obj.cover_image.url
+        return None
 
 
 class BorrowSerializer(serializers.ModelSerializer):

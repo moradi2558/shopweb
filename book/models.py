@@ -14,6 +14,8 @@ class Book(models.Model):
     date = models.DateField()
     isbn = models.CharField(max_length = 250,unique = True)
     available_copy = models.IntegerField(default = 1)
+    cover_image = models.ImageField(upload_to='book_covers/', blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
 
 class Borrow(models.Model):

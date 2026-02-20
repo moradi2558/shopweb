@@ -33,3 +33,4 @@ class Profile(models.Model):
     warning = models.PositiveIntegerField(default=0)
     address = models.TextField()
     phone = models.PositiveIntegerField()
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)

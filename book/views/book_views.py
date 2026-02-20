@@ -54,7 +54,7 @@ class BookListView(APIView):
         paginator = Paginator(books, page_size)
         page_obj = paginator.get_page(page_number)
         
-        serializer = BookListSerializer(page_obj, many=True)
+        serializer = BookListSerializer(page_obj, many=True, context={'request': request})
         
         return Response({
             'data': serializer.data,
@@ -71,7 +71,7 @@ class BookDetailView(APIView):
     
     def get(self, request, book_id):
         book = get_object_or_404(Book, id=book_id)
-        serializer = BookSerializer(book)
+        serializer = BookSerializer(book, context={'request': request})
         return Response({'data': serializer.data}, status=status.HTTP_200_OK)
 
 
@@ -132,7 +132,7 @@ class Home(APIView):
     
     def get(self, request):
         books = Book.objects.filter(available_copy__gt=0)[:10]
-        serializer = BookListSerializer(books, many=True)
+        serializer = BookListSerializer(books, many=True, context={'request': request})
         return Response({
             'message': 'به کتابخانه خوش آمدید',
             'data': serializer.data
