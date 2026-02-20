@@ -29,7 +29,16 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer(many = True, read_only = True)
+    user = UserSerializer(read_only=True)
+    
     class Meta:
         model = Profile
         fields = '__all__'
+        read_only_fields = ['user']
+
+
+class ProfileUpdateSerializer(serializers.ModelSerializer):
+    """Serializer برای به‌روزرسانی پروفایل"""
+    class Meta:
+        model = Profile
+        fields = ['borrow_limit', 'address', 'phone']
