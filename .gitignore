@@ -8,3 +8,6 @@ __pycache__/*
 *.pyd
 .idea/
 .vscode/
+db.sqlite3
+*.sqlite3
+*.db
