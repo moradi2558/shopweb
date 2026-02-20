@@ -13,6 +13,9 @@ interface BookCardProps {
     available_copy?: number
     date?: string
     category?: Array<{ id: number; name: string }>
+    cover_image?: string
+    cover_image_url?: string
+    description?: string
   }
   variant?: 'default' | 'compact' | 'large'
   showProgress?: boolean

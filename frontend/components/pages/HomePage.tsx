@@ -16,6 +16,9 @@ interface Book {
   available_copy?: number
   date?: string
   category?: Array<{ id: number; name: string }>
+  cover_image?: string
+  cover_image_url?: string
+  description?: string
 }
 
 interface Category {
