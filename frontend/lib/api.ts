@@ -10,6 +10,13 @@ const api = axios.create({
   withCredentials: true,
 })
 
+// Helper function to get full image URL
+export const getImageUrl = (imagePath: string | null | undefined): string | null => {
+  if (!imagePath) return null
+  if (imagePath.startsWith('http')) return imagePath
+  return `${API_URL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`
+}
+
 // Request interceptor
 api.interceptors.request.use(
   (config) => {

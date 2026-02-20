@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { BookOpen, ShoppingCart, Calendar } from 'lucide-react'
-import Image from 'next/image'
+import { getImageUrl } from '@/lib/api'
 
 interface BookCardProps {
   book: {
@@ -38,8 +38,23 @@ export default function BookCard({
       className={`${cardVariants[variant]} flex-shrink-0 cursor-pointer group`}
     >
       <div className="relative h-64 bg-gradient-to-br from-slate-700 to-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-600 group-hover:border-yellow-400 transition-all">
-        {/* Book Cover Placeholder */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        {/* Book Cover */}
+        {(() => {
+          const imageUrl = book.cover_image_url || getImageUrl(book.cover_image);
+          return imageUrl ? (
+            <img
+              src={imageUrl}
+              alt={book.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                const placeholder = e.currentTarget.nextElementSibling;
+                if (placeholder) placeholder.classList.remove('hidden');
+              }}
+            />
+          ) : null;
+        })()}
+        <div className={`absolute inset-0 flex items-center justify-center ${book.cover_image_url || book.cover_image ? 'hidden' : ''}`}>
           <BookOpen className="w-16 h-16 text-slate-500" />
         </div>
 
