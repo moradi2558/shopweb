@@ -84,3 +84,6 @@ export const statsAPI = {
   library: () => api.get('/stats/admin/'),
 }
 
+export const homeAPI = {
+  get: () => api.get('/'),
+}

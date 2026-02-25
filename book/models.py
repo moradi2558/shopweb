@@ -7,15 +7,19 @@ class Category(models.Model):
     name = models.CharField(max_length = 250)
 
 class Book(models.Model):
-    name = models.CharField(max_length = 250)
-    sell = models.BooleanField(default = False)
-    price = models.PositiveIntegerField(default = 0)
+    name = models.CharField(max_length=250)
+    author = models.CharField(max_length=250, blank=True)
+    sell = models.BooleanField(default=False)
+    price = models.PositiveIntegerField(default=0)
     category = models.ManyToManyField(Category)
     date = models.DateField()
-    isbn = models.CharField(max_length = 250,unique = True)
-    available_copy = models.IntegerField(default = 1)
+    isbn = models.CharField(max_length=250, unique=True)
+    available_copy = models.IntegerField(default=1)
     cover_image = models.ImageField(upload_to='book_covers/', blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    
+    def __str__(self):
+        return self.name
 
 
 class Borrow(models.Model):
@@ -24,3 +28,13 @@ class Borrow(models.Model):
     borrow_date = models.DateTimeField()
     return_date = models.DateTimeField()
     is_return = models.BooleanField(default = False)
+
+
+class Banner(models.Model):
+    title = models.CharField(max_length=250, blank=True)
+    image = models.ImageField(upload_to='banners/')
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.title or f"Banner {self.pk}"

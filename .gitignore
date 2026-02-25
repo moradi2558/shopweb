@@ -1,13 +1,37 @@
+# Virtual environments
 venv/
 env/
+.venv/
 *.venv
-*/migrations/*
-__pycache__/*
+
+# Python cache
+__pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+# IDE
 .idea/
 .vscode/
-db.sqlite3
-*.sqlite3
-*.db
+
+# Node
+node_modules/
+.next/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables (keep secrets safe)
+.env
+.env.local
+.env.*.local
+
+# NOTE: We ARE including these in git:
+# - db.sqlite3 (database)
+# - media/ folder (images)
+# - migrations/ (needed for deployment)
